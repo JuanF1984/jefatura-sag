@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+/*
+ * Sistema de diseño — Jefatura Distrital de San Andrés de Giles.
+ * Tokens derivados de la investigación visual en docs/referencia-visual-abc.md
+ * (paleta y tipografía verificadas contra abc.gob.ar / gba.gob.ar y el logo
+ * institucional recuperado del sitio original). Ver también /guia-visual.
+ */
+:root {
+  /* Marca */
+  --color-brand-teal: #009aae;
+  --color-brand-teal-dark: #0a5773;
+  --color-brand-teal-darker: #073e51;
+  --color-brand-teal-light: #cde7eb;
+  --color-brand-teal-tint: #eef7f8;
+
+  /* Texto y superficies neutras */
+  --color-ink: #262626;
+  --color-ink-muted: #5b5b5d;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f2f2f2;
+  --color-surface-sunken: #e9eced;
+  --color-border: #e2e2e2;
+  --color-border-strong: #bdbdbd;
+
+  /* Semántico (uso puntual, no decorativo) */
+  --color-notice: #92400e;
+  --color-notice-bg: #fef3c7;
+  --color-notice-border: #fde68a;
+  --color-danger: #b42318;
+  --color-danger-bg: #fef2f2;
+  --color-danger-border: #fecaca;
+  --color-success: #15803d;
+  --color-success-bg: #f0fdf4;
+
+  /* Forma */
+  --radius-card: 0.75rem;
+  --radius-control: 0.5rem;
+
+  /* Sombra suave, nunca dura (ver referencia-visual-abc.md) */
+  --shadow-soft: 0 3px 10px -2px rgb(38 38 38 / 0.12), 0 1px 3px 0 rgb(38 38 38 / 0.06);
+  --shadow-soft-hover: 0 8px 20px -4px rgb(38 38 38 / 0.16), 0 2px 6px 0 rgb(38 38 38 / 0.08);
+
+  /* Ancho de contenido */
+  --container-content: 72rem; /* 1152px */
+}
+
+@theme inline {
+  --color-brand-teal: var(--color-brand-teal);
+  --color-brand-teal-dark: var(--color-brand-teal-dark);
+  --color-brand-teal-darker: var(--color-brand-teal-darker);
+  --color-brand-teal-light: var(--color-brand-teal-light);
+  --color-brand-teal-tint: var(--color-brand-teal-tint);
+
+  --color-ink: var(--color-ink);
+  --color-ink-muted: var(--color-ink-muted);
+  --color-surface: var(--color-surface);
+  --color-surface-muted: var(--color-surface-muted);
+  --color-surface-sunken: var(--color-surface-sunken);
+  --color-border: var(--color-border);
+  --color-border-strong: var(--color-border-strong);
+
+  --color-notice: var(--color-notice);
+  --color-notice-bg: var(--color-notice-bg);
+  --color-notice-border: var(--color-notice-border);
+  --color-danger: var(--color-danger);
+  --color-danger-bg: var(--color-danger-bg);
+  --color-danger-border: var(--color-danger-border);
+  --color-success: var(--color-success);
+  --color-success-bg: var(--color-success-bg);
+
+  --radius-card: var(--radius-card);
+  --radius-control: var(--radius-control);
+
+  --shadow-soft: var(--shadow-soft);
+  --shadow-soft-hover: var(--shadow-soft-hover);
+
+  --container-content: var(--container-content);
+
+  --font-sans: var(--font-encode-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+/* Foco visible y consistente en todo el sitio (no se depende del estilo por defecto del navegador) */
+:focus-visible {
+  outline: 3px solid var(--color-brand-teal-dark);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
