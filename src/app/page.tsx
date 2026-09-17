@@ -75,7 +75,7 @@ export default function Home() {
             alt={`Escudo de la ${site.nombreJefatura}`}
             width={220}
             height={220}
-            className="mx-auto size-40 shrink-0 sm:size-48 lg:size-56"
+            className="mx-auto hidden size-40 shrink-0 sm:block sm:size-48 lg:size-56"
             priority
           />
         </Container>

@@ -23,7 +23,7 @@ export default function InstitucionesPage() {
           <h2 className="text-lg font-bold text-ink">Listado de establecimientos</h2>
           <p className="mt-2 max-w-2xl text-ink-muted">
             Datos institucionales públicos: nombre, nivel, modalidad, dirección, localidad, correo y
-            teléfono institucional. No se publican datos de directivos ni celulares personales.
+            teléfono institucional.
           </p>
           <p className="mt-2 max-w-2xl text-ink-muted">
             En los establecimientos con ubicación cargada, el botón «Ver en el mapa» abre la escuela
