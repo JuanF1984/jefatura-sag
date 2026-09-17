@@ -392,8 +392,7 @@ export const seccionesComplementarias: SeccionDocumentos[] = [
     descripcion:
       "Lineamientos 2025 para las prácticas profesionalizantes en escuelas técnicas y agrarias. Las " +
       "prácticas profesionalizantes son una de las cinco modalidades del Sistema PEAT (Resolución " +
-      "Conjunta 5356/2024). El contenido puntual de estos lineamientos no pudo verificarse todavía " +
-      "contra un texto oficial.",
+      "Conjunta 5356/2024).",
     documentos: [
       {
         titulo: "Prácticas Profesionalizantes — Lineamientos 2025",

@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { mainNav, isNavItemActive } from "@/data/navigation";
@@ -7,10 +8,21 @@ import { cn } from "@/lib/utils";
 
 export function MainNavLinks({ variant }: { variant: "desktop" | "mobile" }) {
   const pathname = usePathname();
+  const listRef = useRef<HTMLUListElement>(null);
+
+  // El menú móvil es un <details>/<summary> nativo (ver Header.tsx), para que
+  // funcione sin JavaScript. Como mejora progresiva, lo cerramos al navegar:
+  // tanto de forma inmediata al click como al confirmarse el cambio de ruta
+  // (cubre también navegación por atrás/adelante del navegador).
+  useEffect(() => {
+    if (variant !== "mobile") return;
+    const details = listRef.current?.closest("details");
+    if (details) details.open = false;
+  }, [variant, pathname]);
 
   if (variant === "mobile") {
     return (
-      <ul className="flex flex-col divide-y divide-border text-sm font-medium">
+      <ul ref={listRef} className="flex flex-col divide-y divide-border text-sm font-medium">
         {mainNav.map((item) => {
           const active = isNavItemActive(item.href, pathname);
           return (
@@ -18,6 +30,10 @@ export function MainNavLinks({ variant }: { variant: "desktop" | "mobile" }) {
               <Link
                 href={item.href}
                 aria-current={active ? "page" : undefined}
+                onClick={(e) => {
+                  const details = e.currentTarget.closest("details");
+                  if (details) details.open = false;
+                }}
                 className={cn(
                   "block min-h-11 rounded-md border-l-4 px-2 py-3 transition-colors duration-200",
                   active

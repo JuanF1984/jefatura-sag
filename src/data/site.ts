@@ -35,8 +35,11 @@ export const site = {
     },
   },
   logos: {
-    escudoJefatura: "/assets/recuperados/escudo-jefatura-distrital-sag.jpg",
-    dgcye: "/assets/recuperados/logo-dgcye-gobierno-pba.jpg",
+    // .webp con fondo transparente, recortado del .jpg original (mismo archivo,
+    // conservado en public/assets/recuperados/) para evitar el recuadro blanco
+    // del JPG al mostrarse sobre fondos de color.
+    escudoJefatura: "/assets/recuperados/escudo-jefatura-distrital-sag.webp",
+    dgcye: "/assets/recuperados/logo-dgcye-gobierno-pba.webp",
   },
 } as const;
 

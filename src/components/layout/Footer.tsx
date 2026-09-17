@@ -93,8 +93,8 @@ export function Footer() {
             <Image
               src={site.logos.dgcye}
               alt="Dirección General de Cultura y Educación — Gobierno de la Provincia de Buenos Aires"
-              width={220}
-              height={47}
+              width={520}
+              height={154}
               className="h-auto w-44"
             />
           </a>

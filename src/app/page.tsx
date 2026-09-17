@@ -42,10 +42,27 @@ export default function Home() {
             <h1 className="mt-2 text-3xl font-bold text-brand-teal-darker sm:text-4xl lg:text-5xl">
               {site.nombreJefatura}
             </h1>
-            <p className="mt-4 text-lg text-ink-muted">
-              Inspector Jefe Distrital: <strong className="text-ink">{site.inspectorJefeDistrital}</strong>
-              {" · "}Secretaria de Jefatura: <strong className="text-ink">{site.secretariaDeJefatura}</strong>
-            </p>
+            <div className="mt-5 flex flex-col gap-3 sm:mt-4 sm:flex-row sm:flex-wrap sm:items-baseline sm:gap-x-2 sm:gap-y-1">
+              <div>
+                <span className="block text-xs font-semibold uppercase tracking-wide text-ink-muted sm:inline sm:text-lg sm:font-normal sm:normal-case sm:tracking-normal">
+                  Inspector Jefe Distrital
+                </span>
+                <strong className="block text-base font-semibold text-ink sm:inline sm:ml-1 sm:text-lg sm:font-bold">
+                  {site.inspectorJefeDistrital}
+                </strong>
+              </div>
+              <span className="hidden text-ink-muted sm:inline" aria-hidden="true">
+                ·
+              </span>
+              <div>
+                <span className="block text-xs font-semibold uppercase tracking-wide text-ink-muted sm:inline sm:text-lg sm:font-normal sm:normal-case sm:tracking-normal">
+                  Secretaria de Jefatura
+                </span>
+                <strong className="block text-base font-semibold text-ink sm:inline sm:ml-1 sm:text-lg sm:font-bold">
+                  {site.secretariaDeJefatura}
+                </strong>
+              </div>
+            </div>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button href="/instituciones">Instituciones educativas</Button>
               <Button href="/formularios" variant="secondary">

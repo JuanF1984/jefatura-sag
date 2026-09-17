@@ -181,7 +181,7 @@ export default function FormulariosPage() {
           <SectionHeading
             eyebrow="Salidas educativas"
             title="Actividades acuáticas"
-            description="Autorización/consentimiento específica para actividades acuáticas en salidas educativas. La normativa reglamentaria específica todavía no fue identificada con certeza (ver docs/auditoria-vigencia-normativa-2026.md)."
+            description="Autorización/consentimiento específica para actividades acuáticas en salidas educativas."
           />
           <ul className="mt-6 grid gap-3 sm:grid-cols-2">
             <DocumentCard documento={autorizacionActividadesAcuaticas} />
