@@ -59,8 +59,8 @@ export const formularioTomaDePosesion = {
 
 /** Autorización/consentimiento específica para actividades acuáticas en salidas educativas. */
 export const autorizacionActividadesAcuaticas: Documento = {
-  titulo: "Autorización actividaes acuáticas en Salidas Educativas.docx",
+  titulo: "Autorización actividades acuáticas en Salidas Educativas.docx",
   href: "https://drive.google.com/open?authuser=0&id=1QZcMDY7ZwwS0LL4klooswQP6n2gIItNg",
   descripcion: "Autorización/consentimiento para actividades acuáticas en salidas educativas.",
-  tipo: tipoDeArchivo("Autorización actividaes acuáticas en Salidas Educativas.docx"),
+  tipo: tipoDeArchivo("Autorización actividades acuáticas en Salidas Educativas.docx"),
 };

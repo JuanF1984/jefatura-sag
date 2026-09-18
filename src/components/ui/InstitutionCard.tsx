@@ -26,7 +26,7 @@ export function InstitutionCard({
           </div>
         </div>
       </div>
-      <dl className="mt-3 space-y-1.5 text-sm text-ink-muted">
+      <div className="mt-3 space-y-1.5 text-sm text-ink-muted">
         {institucion.direccion || institucion.localidad ? (
           <div className="flex items-start gap-2">
             <PinIcon className="mt-0.5 size-4 shrink-0 text-brand-teal-dark" />
@@ -56,7 +56,7 @@ export function InstitutionCard({
             </a>
           </div>
         ) : null}
-      </dl>
+      </div>
       {institucion.observaciones ? (
         <p className="mt-3 text-xs text-ink-muted">{institucion.observaciones}</p>
       ) : null}

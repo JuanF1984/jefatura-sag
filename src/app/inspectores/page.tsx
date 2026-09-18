@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { PersonCard } from "@/components/ui/PersonCard";
@@ -27,9 +28,9 @@ export default function InspectoresPage() {
         <p className="mt-8 text-sm text-ink-muted">
           Para consultas dirigidas a un/a inspector/a en particular, comunicarse por los datos de
           contacto generales de la Jefatura Distrital en{" "}
-          <a href="/contacto" className="text-brand-teal-dark underline">
+          <Link href="/contacto" className="text-brand-teal-dark underline">
             Contacto y ubicación
-          </a>
+          </Link>
           .
         </p>
       </Container>

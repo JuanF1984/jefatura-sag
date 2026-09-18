@@ -39,6 +39,7 @@ export function Button(props: ButtonLinkProps | ButtonElementProps) {
       return (
         <a href={href} target="_blank" rel="noopener noreferrer" className={classes}>
           {children}
+          <span className="sr-only"> (se abre en una pestaña nueva)</span>
         </a>
       );
     }
