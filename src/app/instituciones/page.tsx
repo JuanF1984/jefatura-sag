@@ -16,18 +16,18 @@ export default function InstitucionesPage() {
       <PageHeader
         title="Instituciones educativas"
         crumb="Instituciones educativas"
-        description="Instituciones rurales y urbanas del distrito de San Andrés de Giles."
+        description="Guía de instituciones educativas del distrito de San Andrés de Giles."
       />
       <Container className="py-12">
         <section>
           <h2 className="text-lg font-bold text-ink">Listado de establecimientos</h2>
           <p className="mt-2 max-w-2xl text-ink-muted">
-            Datos institucionales públicos: nombre, nivel, modalidad, dirección, localidad, correo y
-            teléfono institucional.
+            Consultá nombre, nivel o modalidad, dirección, localidad, correo y teléfono institucional
+            de cada establecimiento.
           </p>
           <p className="mt-2 max-w-2xl text-ink-muted">
-            En los establecimientos con ubicación cargada, el botón «Ver en el mapa» abre la escuela
-            en un mapa.
+            Cuando la ubicación está disponible, el botón «Ver en el mapa» permite localizar el
+            establecimiento.
           </p>
           <div className="mt-6">
             <InstitutionsExplorer instituciones={instituciones} />

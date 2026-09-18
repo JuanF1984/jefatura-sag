@@ -31,7 +31,7 @@ export default function FormulariosPage() {
       <PageHeader
         title="Formularios"
         crumb="Formularios"
-        description="Acceso ordenado a formularios, planillas y trámites para docentes y equipos de conducción. Se prioriza el trámite digital vigente de ABC/Servado por sobre una copia estática, cuando ambos existen."
+        description="Formularios, planillas y accesos a trámites para docentes y equipos de conducción."
       />
       <Container className="py-12">
         {/* 1. Declaraciones juradas y documentación de Jefatura Distrital */}
@@ -99,7 +99,7 @@ export default function FormulariosPage() {
           <SectionHeading
             eyebrow="ABC / Servado"
             title="Licencias docentes"
-            description="Reemplaza al bloque extenso de la versión anterior: acceso directo al trámite online, al formulario oficial y a la normativa completa."
+            description="Acceso al trámite online, al formulario oficial y a la normativa vigente sobre licencias docentes."
           />
 
           <div className="mt-6 rounded-card border border-border bg-brand-teal-tint p-6 sm:p-8">
@@ -108,9 +108,8 @@ export default function FormulariosPage() {
             </p>
             <h3 className="mt-1 text-xl font-bold text-brand-teal-darker">Licencias docentes</h3>
             <p className="mt-2 max-w-xl text-ink-muted">
-              El formulario oficial y la normativa completa quedan disponibles para consulta directa. El
-              trámite en sí (solicitar o consultar una licencia) se gestiona en el servicio de
-              autogestión de ABC, con acceso más abajo.
+              Consultá el formulario oficial y la normativa vigente. La gestión de la licencia se
+              realiza desde el servicio de autogestión de ABC.
             </p>
             <div className="mt-5 flex flex-wrap gap-3">
               <Button href={licenciasFormularioSad.href} external variant="secondary">
