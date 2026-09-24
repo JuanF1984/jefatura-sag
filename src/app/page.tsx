@@ -18,6 +18,8 @@ import {
 import { site } from "@/data/site";
 import { accesosPrincipales, type IconKey } from "@/data/accesos";
 import { historiaDelLogotipo } from "@/data/institucional";
+import { novedadesRecientes } from "@/lib/novedades";
+import { NovedadCard } from "@/components/ui/NovedadCard";
 
 const icons: Record<IconKey, React.ComponentType<{ className?: string }>> = {
   school: SchoolIcon,
@@ -29,7 +31,14 @@ const icons: Record<IconKey, React.ComponentType<{ className?: string }>> = {
   map: MapIcon,
 };
 
+const NOVEDADES_EN_PORTADA = 3;
+// Ancho real de las tarjetas secundarias (mitad del contenedor menos el espacio entre columnas).
+const SIZES_TARJETA_PORTADA = "(min-width: 1024px) 532px, (min-width: 768px) 50vw, 100vw";
+const SIZES_ANCHO_COMPLETO = "(min-width: 1152px) 1088px, 100vw";
+
 export default function Home() {
+  const novedadesDestacadas = novedadesRecientes(NOVEDADES_EN_PORTADA);
+
   return (
     <>
       {/* Portada */}
@@ -81,6 +90,38 @@ export default function Home() {
         </Container>
       </section>
 
+      {/* Novedades distritales: sólo existe si hay publicaciones */}
+      {novedadesDestacadas.length > 0 ? (
+        <section className="pb-14">
+          <Container>
+            <SectionHeading eyebrow="Jefatura Distrital" title="Novedades distritales" />
+            {/* Una columna en móvil. Desde md: la primera (horizontal en pantallas
+                grandes) ocupa todo el ancho y las demás, verticales, se reparten en
+                dos columnas iguales. Con dos novedades la segunda también ocupa el
+                ancho completo, para no dejar una columna vacía. */}
+            <ul className="mt-8 grid gap-6 md:grid-cols-2">
+              {novedadesDestacadas.map((novedad, i) => {
+                const anchoCompleto = i === 0 || novedadesDestacadas.length === 2;
+                return (
+                  <li key={novedad.slug} className={anchoCompleto ? "md:col-span-2" : undefined}>
+                    <NovedadCard
+                      novedad={novedad}
+                      destacada={i === 0}
+                      sizes={i === 0 ? undefined : anchoCompleto ? SIZES_ANCHO_COMPLETO : SIZES_TARJETA_PORTADA}
+                    />
+                  </li>
+                );
+              })}
+            </ul>
+            <div className="mt-8">
+              <Button href="/novedades" variant="secondary">
+                Ver todas las novedades
+              </Button>
+            </div>
+          </Container>
+        </section>
+      ) : null}
+
       {/* Accesos principales */}
       <section className="py-14">
         <Container>
@@ -102,6 +143,7 @@ export default function Home() {
           </ul>
         </Container>
       </section>
+
 
       {/* Institucional: historia del logotipo */}
       <section className="border-t border-border bg-surface-muted py-14">

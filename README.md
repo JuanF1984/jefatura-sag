@@ -141,24 +141,66 @@ documentadas en [`docs/fuentes-calendario-novedades.md`](./docs/fuentes-calendar
 - **Novedades y recursos educativos** (`src/data/recursos-educativos.ts`): accesos destacados a
   noticias y recursos pedagógicos de la DGCyE (Portal ABC, Continuemos Estudiando). Deliberadamente
   corto: esta página es una puerta de acceso, no un espejo de ABC.
-- **Comunicados de Jefatura Distrital** (`src/data/novedades.ts`): lo único que se espera mantener
-  manualmente con el tiempo. Para publicar un comunicado nuevo, agregar un objeto a
-  `comunicadosDistritales`:
-
-  ```ts
-  {
-    titulo: "Nombre del comunicado.pdf",
-    href: "https://drive.google.com/...",
-    categoria: "Comunicado distrital", // opcional, para distinguirlo de un PDF oficial de la DGCyE
-    fecha: "Opcional",
-  }
-  ```
-
-  Mientras la lista esté vacía, la página y el inicio muestran un aviso genérico ("Todavía no hay
-  comunicados...") — no hace falta editar ese texto, se genera solo a partir de la lista.
+- **Novedades distritales** (`/novedades`, datos en `src/data/novedades.ts`): publicaciones propias de
+  la Jefatura, versionadas en Git (sin base de datos ni servicios externos). Es lo único que se espera
+  mantener manualmente con el tiempo; ver "Cómo cargar una novedad distrital" más abajo.
 - **Archivo 2025** (`src/data/archivo-2025.ts`): contenido del ciclo lectivo 2025 recuperado del sitio
   anterior. Se muestra en una sección colapsable al pie de la página, marcado como histórico. No
   eliminar sin confirmar que no se usa en otra parte del sitio.
+
+### Cómo cargar una novedad distrital
+
+Las novedades viven en `src/data/novedades.ts` (array `novedades`) y se publican en `/novedades`,
+`/novedades/<slug>` y, las 3 más recientes, en la portada. Mientras el array esté vacío, la portada no
+muestra la sección ni enlaza a `/novedades`; aparece sola con la primera publicación.
+
+1. (Opcional) Preparar la imagen y copiarla a `public/novedades/` (ver recomendaciones abajo).
+2. Agregar un objeto al array `novedades` (hay una plantilla comentada en el archivo). El orden en el
+   archivo no importa: el sitio ordena por `fecha`, de la más reciente a la más antigua (ver "Criterio
+   de fechas").
+
+   ```ts
+   {
+     slug: "acto-dia-de-la-tradicion",       // único; minúsculas, números y guiones
+     fecha: "2026-11-10",                    // AAAA-MM-DD: día del acontecimiento (sin hora)
+     titulo: "Título de la publicación",
+     resumen: "Resumen breve para tarjetas y listado.",
+     contenido: `Primer párrafo.
+
+Segundo párrafo, separado por una línea en blanco.`,
+     categoria: "Comunicado",                // opcional
+     imagen: "/novedades/acto-tradicion.webp", // opcional
+     imagenAlt: "Descripción de la foto",    // obligatorio si hay imagen
+     enlace: { texto: "Ver más información", url: "https://..." }, // opcional
+   },
+   ```
+
+3. Verificar con `pnpm dev` y publicar con commit + push.
+
+Reglas: sin HTML ni Markdown en `contenido` (sólo texto y párrafos); `slug` único (si se repite, la
+compilación falla con un mensaje claro, igual que con una fecha inexistente o una imagen sin
+`imagenAlt`). El `slug` forma parte de la URL: no cambiarlo una vez publicado.
+
+**Criterio de fechas:**
+
+- `fecha` es la fecha **del acontecimiento**, no el día en que se carga la noticia en el sitio.
+- Para una actividad de varios días se puede usar la fecha de finalización (p. ej. una feria del 14 al
+  18 de septiembre lleva `2026-09-18`); el período completo se aclara en el `contenido`.
+- El orden de las novedades (portada y `/novedades`) se determina por esa fecha, de la más reciente a la
+  más antigua. Si dos novedades tienen la misma fecha, se respeta el orden del archivo.
+- No reemplazar la fecha por el día de carga ni de despliegue. Estas aclaraciones son internas: no van
+  en las páginas públicas.
+
+**Imágenes** (una por publicación, como máximo):
+
+- Formato WebP preferido (JPG también sirve).
+- Proporción 3:2 (horizontal). Se muestran recortadas a 3:2 sin deformarse, así que conviene encuadrar el
+  motivo principal hacia el centro.
+- Ancho entre 1200 y 1600 px; peso ideal por debajo de ~300 KB. No subir originales de celular (varios
+  MB): Next.js las reduce al servirlas, pero el repositorio crece igual.
+- Nombre descriptivo en minúsculas y con guiones (`acto-dia-de-la-tradicion.webp`).
+- Si se necesita optimizar seguido, se puede sumar más adelante un script con `sharp` (ya viene con
+  Next.js) que redimensione y convierta a WebP; por ahora se puede usar cualquier editor o Squoosh.
 
 ### Cómo actualizar imágenes
 
@@ -233,8 +275,8 @@ autenticación).
 
 ## Próximos pasos recomendados (no implementados en esta etapa)
 
-- Cargar los primeros comunicados propios de la Jefatura Distrital en `comunicadosDistritales` (ver
-  "Calendario y novedades" arriba) y, si la Jefatura lo provee, un listado propio de instituciones
+- Cargar las primeras novedades propias de la Jefatura Distrital (ver "Cómo cargar una novedad
+  distrital") y, si la Jefatura lo provee, un listado propio de instituciones
   educativas.
 - Revisar cada tanto que las URL oficiales enlazadas en `src/data/calendario.ts`,
   `src/data/tramites-docentes.ts` y `src/data/recursos-educativos.ts` sigan vigentes (ver

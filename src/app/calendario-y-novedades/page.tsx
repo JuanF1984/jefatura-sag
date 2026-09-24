@@ -12,6 +12,7 @@ import { calendarioEscolarPortal, calendarioEscolarDocumentos } from "@/data/cal
 import { tramitesDocentes } from "@/data/tramites-docentes";
 import { recursosEducativos } from "@/data/recursos-educativos";
 import { calendario2025, comunicados2025, flyers2025 } from "@/data/archivo-2025";
+import { novedadesOrdenadas } from "@/lib/novedades";
 
 export const metadata: Metadata = {
   title: "Calendario y novedades",
@@ -80,7 +81,21 @@ export default function CalendarioYNovedadesPage() {
           </ul>
         </section>
 
-        {/* 3. Novedades y recursos educativos */}
+        {/* 3. Novedades distritales: acceso a /novedades, sólo si hay publicaciones */}
+        {novedadesOrdenadas.length > 0 ? (
+          <section className="mt-14">
+            <SectionHeading
+              eyebrow="Jefatura Distrital"
+              title="Novedades distritales"
+              description="Comunicados y novedades propias de la Jefatura Distrital de San Andrés de Giles."
+            />
+            <div className="mt-6">
+              <Button href="/novedades">Ver novedades distritales</Button>
+            </div>
+          </section>
+        ) : null}
+
+        {/* 4. Novedades y recursos educativos */}
         <section className="mt-14">
           <SectionHeading
             eyebrow="Recursos"
@@ -103,7 +118,7 @@ export default function CalendarioYNovedadesPage() {
           </ul>
         </section>
 
-        {/* 4. Archivo 2025 */}
+        {/* 5. Archivo 2025 */}
         <section className="mt-14 border-t border-border pt-10">
           <details className="group">
             <summary className="flex cursor-pointer list-none items-center justify-between gap-3">

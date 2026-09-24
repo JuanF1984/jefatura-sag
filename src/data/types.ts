@@ -122,6 +122,38 @@ export type Formulario = {
   aclaraciones?: string;
 };
 
+/**
+ * Publicación de la sección "Novedades distritales" (/novedades). Se mantiene a
+ * mano en src/data/novedades.ts; el sitio valida el conjunto al compilar (ver
+ * src/lib/novedades.ts).
+ *
+ * La imagen es opcional, pero si existe debe llevar texto alternativo: el tipo
+ * lo exige, así que olvidarlo es un error de compilación.
+ */
+export type Novedad = {
+  /** Identificador único en la URL (/novedades/<slug>): minúsculas, números y guiones. */
+  slug: string;
+  /** Fecha del acontecimiento (en actividades de varios días, la de finalización) en formato ISO `AAAA-MM-DD`. Sin hora ni zona horaria. Determina el orden. */
+  fecha: string;
+  titulo: string;
+  /** Texto breve para tarjetas y listado. */
+  resumen: string;
+  /** Texto completo. Los párrafos se separan con una línea en blanco. Sin HTML. */
+  contenido: string;
+  /** Etiqueta opcional (p. ej. "Comunicado", "Capacitación"). */
+  categoria?: string;
+  /** Enlace externo opcional, mostrado al final de la publicación. */
+  enlace?: { texto: string; url: string };
+} & (
+  | { imagen?: undefined; imagenAlt?: undefined }
+  | {
+      /** Ruta pública de la imagen, dentro de public/novedades/ (p. ej. "/novedades/acto.webp"). */
+      imagen: string;
+      /** Descripción accesible de la imagen. Obligatoria si hay imagen. */
+      imagenAlt: string;
+    }
+);
+
 /** Acceso a un portal, servicio o trámite externo (no un archivo descargable). */
 export type AccesoExterno = {
   titulo: string;
