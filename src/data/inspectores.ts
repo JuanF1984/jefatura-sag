@@ -10,6 +10,7 @@ export const inspectores: Inspector[] = [
   { nombre: "Borsetti, Mariela", nivelModalidad: "Educación Inicial" },
   { nombre: "Pizzi, Verónica", nivelModalidad: "Educación Inicial" },
   { nombre: "Botana, Valeria", nivelModalidad: "Educación Primaria" },
+  { nombre: "Añazco, Erika Mercedes", nivelModalidad: "Educación Primaria", observaciones: "Suplente de Malaisi M. Belén" },
   { nombre: "Luna, Diana", nivelModalidad: "Educación Secundaria" },
   { nombre: "Torres, Soledad", nivelModalidad: "Educación Técnica" },
   { nombre: "Guiot, Angélica", nivelModalidad: "Educación Agraria" },
