@@ -108,6 +108,44 @@ export type Institucion = {
   cue?: string;
 };
 
+/**
+ * Grupo de nivel/modalidad con el que se organiza `/oferta-educativa`. Es una
+ * organización del sitio, no una categoría oficial. El orden y los títulos
+ * visibles viven en `gruposOferta` (src/data/oferta-educativa.ts).
+ */
+export type GrupoOferta =
+  | "secundaria"
+  | "tecnica-agraria"
+  | "jovenes-adultos"
+  | "superior"
+  | "formacion-profesional";
+
+/** Una orientación, carrera o trayecto. Sólo existen los campos que trae la planilla de origen. */
+export type Oferta = {
+  /** Denominación pública de la orientación, carrera o trayecto. */
+  denominacion: string;
+  /** Párrafos separados por una línea en blanco. Sin HTML. */
+  perfilIngresante?: string;
+  /** Párrafos separados por una línea en blanco. Sin HTML. */
+  perfilEgresado?: string;
+  /**
+   * Agrupación visual para instituciones con muchas propuestas (Formación
+   * Profesional). La define el sitio: no es una denominación oficial.
+   */
+  familia?: string;
+};
+
+/**
+ * Oferta de una institución para un ciclo lectivo. Si la institución está en
+ * `instituciones.ts` se relaciona por CUE (nombre, localidad y contacto se toman
+ * de ahí, nunca se duplican); los programas sin establecimiento propio (Plan
+ * FinEs) llevan una denominación propia en lugar de CUE.
+ */
+export type OfertaInstitucion = {
+  grupo: GrupoOferta;
+  ofertas: Oferta[];
+} & ({ cue: string; nombre?: undefined } | { cue?: undefined; nombre: string });
+
 export type Inspector = {
   nombre: string;
   nivelModalidad: string;

@@ -1,4 +1,6 @@
+import Link from "next/link";
 import type { Institucion } from "@/data/types";
+import { anclaCue } from "@/lib/utils";
 import { MailIcon, PhoneIcon, PinIcon, SchoolIcon } from "@/components/ui/icons";
 import { Tag } from "@/components/ui/Tag";
 
@@ -6,14 +8,23 @@ export function InstitutionCard({
   institucion,
   puedeVerseEnMapa = false,
   onVerEnElMapa,
+  ofertaHref,
+  ofertaTexto,
 }: {
   institucion: Institucion;
   /** true sólo cuando la institución tiene una coordenada verificada en `instituciones-geo.ts`. */
   puedeVerseEnMapa?: boolean;
   onVerEnElMapa?: (disparador: HTMLElement) => void;
+  /** Enlace a la tarjeta de la institución en /oferta-educativa; sólo si tiene oferta publicada. */
+  ofertaHref?: string;
+  ofertaTexto?: string;
 }) {
   return (
-    <li className="list-none rounded-card border border-border bg-surface p-5 shadow-soft">
+    // El `id` por CUE permite enlazar una institución desde otras páginas (/instituciones#cue-...).
+    <li
+      id={institucion.cue ? anclaCue(institucion.cue) : undefined}
+      className="list-none scroll-mt-6 rounded-card border border-border bg-surface p-5 shadow-soft target:ring-2 target:ring-brand-teal-dark"
+    >
       <div className="flex items-start gap-3">
         <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-brand-teal-tint text-brand-teal-dark">
           <SchoolIcon className="size-5" />
@@ -69,6 +80,17 @@ export function InstitutionCard({
           <PinIcon className="size-4 shrink-0" />
           Ver en el mapa
         </button>
+      ) : null}
+      {ofertaHref && ofertaTexto ? (
+        <p className="mt-3 text-sm">
+          <Link
+            href={ofertaHref}
+            className="font-medium text-brand-teal-dark underline decoration-brand-teal-dark/40 underline-offset-2 hover:decoration-brand-teal-dark"
+          >
+            {ofertaTexto}
+            <span className="sr-only">: {institucion.nombre}</span>
+          </Link>
+        </p>
       ) : null}
     </li>
   );

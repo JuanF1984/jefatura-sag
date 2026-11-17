@@ -5,6 +5,7 @@ export type NavItem = {
 
 export const mainNav: NavItem[] = [
   { href: "/instituciones", label: "Instituciones educativas" },
+  { href: "/oferta-educativa", label: "Oferta educativa" },
   { href: "/inspectores", label: "Inspectores" },
   { href: "/calendario-y-novedades", label: "Calendario y novedades" },
   { href: "/formularios", label: "Formularios" },

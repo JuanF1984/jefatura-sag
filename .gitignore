@@ -46,3 +46,4 @@ next-env.d.ts
 # snapshots MHT/MHTML de páginas capturadas (pueden incluir API keys/tokens de sesión embebidos) - NO versionar
 /material-original/*.mht
 /material-original/*.mhtml
+/material-orginal

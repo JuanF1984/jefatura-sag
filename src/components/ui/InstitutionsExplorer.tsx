@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import type { Institucion } from "@/data/types";
 import { InstitutionCard } from "@/components/ui/InstitutionCard";
 import { SearchIcon } from "@/components/ui/icons";
+import { anclaCue } from "@/lib/utils";
 import { ubicacionesVerificadasDeInstitucion } from "@/data/instituciones-geo";
 import type { PuntoMapa } from "@/components/ui/InstitucionesMapa";
 
@@ -38,7 +39,17 @@ function opcionesUnicas(valores: Array<string | undefined>) {
 const selectClass =
   "min-h-11 rounded-control border border-border bg-surface px-3 text-sm text-ink focus-visible:outline-none";
 
-export function InstitutionsExplorer({ instituciones }: { instituciones: Institucion[] }) {
+export function InstitutionsExplorer({
+  instituciones,
+  cuesConOferta = [],
+  textoOferta,
+}: {
+  instituciones: Institucion[];
+  /** CUE de las instituciones con oferta publicada en /oferta-educativa. */
+  cuesConOferta?: string[];
+  /** Texto del enlace a la oferta (p. ej. "Ver oferta educativa 2027"). */
+  textoOferta?: string;
+}) {
   const [busqueda, setBusqueda] = useState("");
   const [nivel, setNivel] = useState(TODOS);
   const [modalidad, setModalidad] = useState(TODAS);
@@ -77,6 +88,7 @@ export function InstitutionsExplorer({ instituciones }: { instituciones: Institu
     [instituciones],
   );
   const puntosPorCue = useMemo(() => new Map(puntos.map((p) => [p.cue, p])), [puntos]);
+  const conOferta = useMemo(() => new Set(cuesConOferta), [cuesConOferta]);
 
   function verEnElMapa(institucion: Institucion, disparador: HTMLElement | null) {
     const punto = institucion.cue ? puntosPorCue.get(institucion.cue) : undefined;
@@ -187,6 +199,8 @@ export function InstitutionsExplorer({ instituciones }: { instituciones: Institu
               institucion={i}
               puedeVerseEnMapa={Boolean(i.cue && puntosPorCue.has(i.cue))}
               onVerEnElMapa={(disparador) => verEnElMapa(i, disparador)}
+              ofertaHref={i.cue && conOferta.has(i.cue) ? `/oferta-educativa#${anclaCue(i.cue)}` : undefined}
+              ofertaTexto={textoOferta}
             />
           ))}
         </ul>

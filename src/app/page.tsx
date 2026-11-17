@@ -14,6 +14,7 @@ import {
   PhoneIcon,
   PinIcon,
   SchoolIcon,
+  SignpostIcon,
 } from "@/components/ui/icons";
 import { site } from "@/data/site";
 import { accesosPrincipales, type IconKey } from "@/data/accesos";
@@ -23,6 +24,7 @@ import { NovedadCard } from "@/components/ui/NovedadCard";
 
 const icons: Record<IconKey, React.ComponentType<{ className?: string }>> = {
   school: SchoolIcon,
+  signpost: SignpostIcon,
   people: PeopleIcon,
   calendar: CalendarIcon,
   form: FormIcon,

@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { InstitutionsExplorer } from "@/components/ui/InstitutionsExplorer";
 import { mapasInstituciones, instituciones } from "@/data/instituciones";
+import { cicloOferta, cuesConOferta } from "@/lib/oferta-educativa";
 
 export const metadata: Metadata = {
   title: "Instituciones educativas",
@@ -29,8 +31,23 @@ export default function InstitucionesPage() {
             Cuando la ubicación está disponible, el botón «Ver en el mapa» permite localizar el
             establecimiento.
           </p>
+          <p className="mt-2 max-w-2xl text-ink-muted">
+            Las orientaciones, carreras y trayectos de cada institución para el ciclo lectivo {cicloOferta} se
+            pueden consultar en{" "}
+            <Link
+              href="/oferta-educativa"
+              className="font-medium text-brand-teal-dark underline decoration-brand-teal-dark/40 underline-offset-2 hover:decoration-brand-teal-dark"
+            >
+              Oferta educativa {cicloOferta}
+            </Link>
+            .
+          </p>
           <div className="mt-6">
-            <InstitutionsExplorer instituciones={instituciones} />
+            <InstitutionsExplorer
+              instituciones={instituciones}
+              cuesConOferta={cuesConOferta}
+              textoOferta={`Ver oferta educativa ${cicloOferta}`}
+            />
           </div>
         </section>
 

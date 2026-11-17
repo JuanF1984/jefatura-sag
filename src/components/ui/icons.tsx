@@ -150,6 +150,16 @@ export function ChevronDownIcon({ className }: IconProps) {
   );
 }
 
+export function SignpostIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" className={className} aria-hidden="true">
+      <path d="M12 3v18M9 21h6" strokeLinecap="round" />
+      <path d="M5 5.5h11l2.5 2.5L16 10.5H5Z" strokeLinejoin="round" />
+      <path d="M19 12.5H8L5.5 15 8 17.5h11Z" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 export function MapIcon({ className }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" className={className} aria-hidden="true">

@@ -1,5 +1,8 @@
+import { cicloOferta } from "@/data/oferta-educativa";
+
 export type IconKey =
   | "school"
+  | "signpost"
   | "people"
   | "calendar"
   | "form"
@@ -20,6 +23,12 @@ export const accesosPrincipales: AccesoPrincipal[] = [
     title: "Instituciones educativas",
     description: "Mapa interactivo y listado de escuelas del distrito, rurales y urbanas.",
     icon: "school",
+  },
+  {
+    href: "/oferta-educativa",
+    title: `Oferta educativa ${cicloOferta}`,
+    description: "Orientaciones, carreras y trayectos disponibles en el distrito.",
+    icon: "signpost",
   },
   {
     href: "/inspectores",
