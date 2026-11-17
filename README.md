@@ -264,14 +264,16 @@ En resumen:
 
 1. Subir el repositorio a GitHub/GitLab/Bitbucket (o conectar la carpeta local con la CLI de Vercel).
 2. En Vercel, "Add New Project" → importar el repositorio. Vercel detecta Next.js automáticamente.
-3. Antes del primer deploy, actualizar `siteUrl` en `src/data/site.ts` con el dominio real asignado por
-   Vercel (o el dominio propio de la Jefatura), para que los metadatos Open Graph y el `sitemap.xml`
-   apunten a la URL correcta.
+3. La URL pública (`siteUrl` en `src/data/site.ts`) se resuelve sola: en Vercel toma el dominio de
+   producción del proyecto (`VERCEL_PROJECT_PRODUCTION_URL`). Si se configura un dominio propio, definir
+   la variable de entorno `SITE_URL` (p. ej. `https://jd093.ejemplo.gob.ar`) en Vercel. De ella dependen
+   la URL canónica, Open Graph, los datos estructurados, `sitemap.xml` y `robots.txt`
+   (ver `docs/seo.md`).
 4. Verificar que el proyecto en Vercel use `pnpm` (Vercel lo detecta automáticamente al ver
    `pnpm-lock.yaml`).
 
-No se requiere ninguna variable de entorno para esta primera etapa (sin base de datos, sin
-autenticación).
+La única variable de entorno opcional es `SITE_URL` (ver punto 3). No hay base de datos ni
+autenticación.
 
 ## Próximos pasos recomendados (no implementados en esta etapa)
 
@@ -284,4 +286,4 @@ autenticación).
   pero no está de más confirmarlas una vez por ciclo lectivo.
 - Confirmar los dos enlaces de "sitios vinculados" con la Jefatura Distrital.
 - Reemplazar los dos enlaces rotos (`/edit`) una vez identificado su destino público correcto.
-- Configurar un dominio propio en Vercel y actualizar `siteUrl`.
+- Configurar un dominio propio en Vercel y definir `SITE_URL`.

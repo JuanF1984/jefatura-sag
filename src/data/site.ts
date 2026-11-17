@@ -43,4 +43,21 @@ export const site = {
   },
 } as const;
 
-export const siteUrl = "https://jefatura-distrital-sag.vercel.app";
+/**
+ * URL pública del sitio (sin barra final). La usan canonical, Open Graph, JSON-LD,
+ * sitemap.xml y robots.txt, así que tiene que ser el dominio real:
+ * 1. `SITE_URL`, si está definida (usarla al configurar un dominio propio).
+ * 2. Si no, el dominio de producción que Vercel expone en el build
+ *    (`VERCEL_PROJECT_PRODUCTION_URL`), para que nunca apunte a un dominio inexistente.
+ * 3. En local, http://localhost:3000.
+ * Sólo se usa del lado del servidor (metadata, sitemap, robots).
+ */
+function resolverSiteUrl(): string {
+  const explicita = process.env.SITE_URL?.trim();
+  if (explicita) return explicita.replace(/\/+$/, "");
+  const vercel = process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim();
+  if (vercel) return `https://${vercel}`;
+  return "http://localhost:3000";
+}
+
+export const siteUrl = resolverSiteUrl();

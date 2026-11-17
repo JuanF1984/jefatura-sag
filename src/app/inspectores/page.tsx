@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { metadataPagina } from "@/lib/seo";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
@@ -6,10 +7,12 @@ import { PersonCard } from "@/components/ui/PersonCard";
 import { site } from "@/data/site";
 import { inspectores } from "@/data/inspectores";
 
-export const metadata: Metadata = {
-  title: "Inspectores",
-  description: "Inspectores/as de la Jefatura Distrital de San Andrés de Giles, por nivel y modalidad.",
-};
+export const metadata: Metadata = metadataPagina({
+  titulo: "Inspectores",
+  descripcion:
+    "Inspectores e inspectoras de la Jefatura Distrital de San Andrés de Giles, organizados por nivel y modalidad educativa.",
+  ruta: "/inspectores",
+});
 
 export default function InspectoresPage() {
   return (

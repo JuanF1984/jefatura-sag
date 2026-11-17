@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { jsonLdNovedad, metadataPagina } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
@@ -28,7 +30,14 @@ export async function generateMetadata({
   const { slug } = await params;
   const novedad = obtenerNovedad(slug);
   if (!novedad) return {};
-  return { title: novedad.titulo, description: novedad.resumen };
+  return metadataPagina({
+    titulo: novedad.titulo,
+    descripcion: novedad.resumen,
+    ruta: `/novedades/${novedad.slug}`,
+    tipo: "article",
+    publicado: novedad.fecha,
+    imagen: novedad.imagen ? { url: novedad.imagen, alt: novedad.imagenAlt } : undefined,
+  });
 }
 
 export default async function NovedadPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -38,6 +47,7 @@ export default async function NovedadPage({ params }: { params: Promise<{ slug: 
 
   return (
     <>
+      <JsonLd data={jsonLdNovedad(novedad)} />
       <section className="border-b border-border bg-brand-teal-tint">
         <Container className="max-w-3xl py-10">
           <Breadcrumbs

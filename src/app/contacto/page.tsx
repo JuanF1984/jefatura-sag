@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
+import { metadataPagina } from "@/lib/seo";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Button } from "@/components/ui/Button";
 import { MailIcon, PhoneIcon, PinIcon, FacebookIcon, InstagramIcon, YoutubeIcon } from "@/components/ui/icons";
 import { site } from "@/data/site";
 
-export const metadata: Metadata = {
-  title: "Contacto y ubicación",
-  description: `Dirección, teléfono, correo y redes sociales de la ${site.nombreJefatura}.`,
-};
+export const metadata: Metadata = metadataPagina({
+  titulo: "Contacto y ubicación",
+  descripcion:
+    `Dirección, teléfono, correo y redes sociales de la ${site.nombreJefatura}: ${site.direccion.split(",")[0]}, tel. ${site.telefono}.`,
+  ruta: "/contacto",
+});
 
 const redes = [
   { href: site.redes.facebook, label: "Facebook", Icon: FacebookIcon },

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { metadataPagina } from "@/lib/seo";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { DocumentSectionList } from "@/components/ui/DocumentSectionList";
@@ -9,11 +10,12 @@ import {
   seccionesHistoricas,
 } from "@/data/normativa-secciones";
 
-export const metadata: Metadata = {
-  title: "Régimen académico y normativa",
-  description:
-    "Regímenes Académicos vigentes de la Provincia de Buenos Aires por nivel y modalidad (secundaria, jóvenes y adultos, superior y primaria), y normativa complementaria: salidas educativas, PEAT y prácticas profesionalizantes.",
-};
+export const metadata: Metadata = metadataPagina({
+  titulo: "Régimen académico y normativa",
+  descripcion:
+    "Regímenes Académicos vigentes de la Provincia de Buenos Aires por nivel y modalidad, y normativa sobre salidas educativas, PEAT y prácticas profesionalizantes.",
+  ruta: "/regimen-academico",
+});
 
 export default function RegimenAcademicoPage() {
   return (

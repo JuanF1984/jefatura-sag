@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { jsonLdOferta, metadataPagina } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
@@ -6,14 +8,17 @@ import { OfertaInstitucionCard } from "@/components/ui/OfertaInstitucionCard";
 import { cicloOferta, ofertaPorGrupo } from "@/lib/oferta-educativa";
 import { cn } from "@/lib/utils";
 
-export const metadata: Metadata = {
-  title: `Oferta educativa ${cicloOferta}`,
-  description: `Orientaciones, tecnicaturas, carreras de nivel superior y trayectos de formación disponibles en el distrito de San Andrés de Giles para el ciclo lectivo ${cicloOferta}.`,
-};
+export const metadata: Metadata = metadataPagina({
+  titulo: `Oferta educativa ${cicloOferta}`,
+  descripcion:
+    `Oferta educativa ${cicloOferta} de San Andrés de Giles: orientaciones de secundaria, tecnicaturas, profesorados y trayectos de formación profesional, con el perfil del egresado.`,
+  ruta: "/oferta-educativa",
+});
 
 export default function OfertaEducativaPage() {
   return (
     <>
+      <JsonLd data={jsonLdOferta(cicloOferta, ofertaPorGrupo.flatMap((grupo) => grupo.instituciones))} />
       <PageHeader
         title={`Oferta Educativa ${cicloOferta}`}
         crumb="Oferta educativa"

@@ -26,7 +26,7 @@ Se compararon celda por celda las dos planillas. La V2 agrega dos filas del ISFD
 | 14 | EES 9: perfil del ingresante | Sí |
 | 24–30 | ISFD 142: 5 profesorados y un perfil del ingresante común (celda combinada D24:D30). Sin perfil del egresado | Sí, el perfil común se repite en cada profesorado |
 
-## Publicado (15 instituciones, 37 ofertas)
+## Publicado (15 instituciones, 36 ofertas)
 
 | Grupo | Institución (CUE) | Ofertas |
 |---|---|---|
@@ -44,7 +44,7 @@ Se compararon celda por celda las dos planillas. La V2 agrega dos filas del ISFD
 | Jóvenes y Adultos | Plan FinEs (sin CUE) | Bachiller en Ciencias Sociales |
 | Jóvenes y Adultos | EEPA 702 (0604332-00) | Nivel primario (equivalente a 6.º año) |
 | Superior | ISFD 142 (0604335-00) | Profesorado de Educación Primaria, de Educación Inicial, de Historia, de Biología y de Lengua y Literatura |
-| Formación Profesional | CFP 401 (0617001-00) | 14 trayectos (ver abajo) |
+| Formación Profesional | CFP 401 (0617001-00) | 13 trayectos (ver abajo) |
 
 CFP 401, agrupado por familias. Las familias son una organización visual del sitio, no son denominaciones oficiales:
 

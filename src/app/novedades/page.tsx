@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
+import { metadataPagina } from "@/lib/seo";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { NovedadCard } from "@/components/ui/NovedadCard";
 import { novedadesOrdenadas } from "@/lib/novedades";
 
-export const metadata: Metadata = {
-  title: "Novedades distritales",
-  description: "Comunicados y novedades de la Jefatura Distrital de San Andrés de Giles.",
-};
+export const metadata: Metadata = metadataPagina({
+  titulo: "Novedades distritales",
+  descripcion:
+    "Comunicados, actividades y novedades de la Jefatura Distrital y de las escuelas de San Andrés de Giles.",
+  ruta: "/novedades",
+});
 
 export default function NovedadesPage() {
   return (

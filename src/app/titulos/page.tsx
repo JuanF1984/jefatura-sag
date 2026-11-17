@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
+import { metadataPagina } from "@/lib/seo";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { DocumentSectionList } from "@/components/ui/DocumentSectionList";
 import { seccionesTitulos, seccionesHistoricasTitulos } from "@/data/titulos-secciones";
 
-export const metadata: Metadata = {
-  title: "Títulos y certificaciones",
-  description:
-    "Emisión, anulación, rectificación y duplicados de títulos, certificados analíticos y equivalencias vigentes en el sistema de títulos digitales de la Provincia de Buenos Aires.",
-};
+export const metadata: Metadata = metadataPagina({
+  titulo: "Títulos y certificaciones",
+  descripcion:
+    "Emisión, anulación, rectificación y duplicados de títulos, analíticos y equivalencias en el sistema de títulos digitales de la Provincia de Buenos Aires.",
+  ruta: "/titulos",
+});
 
 export default function TitulosPage() {
   return (

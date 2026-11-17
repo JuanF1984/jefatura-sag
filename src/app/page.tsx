@@ -1,4 +1,7 @@
+import type { Metadata } from "next";
 import Image from "next/image";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { descripcionSitio, jsonLdOrganizacion } from "@/lib/seo";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { AccessCard } from "@/components/ui/AccessCard";
@@ -33,6 +36,20 @@ const icons: Record<IconKey, React.ComponentType<{ className?: string }>> = {
   map: MapIcon,
 };
 
+// Título: el de la portada definido en el layout (`title.default`). Se repite el
+// `openGraph` completo porque el de la página reemplaza al del layout, no se combina.
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: site.nombreJefatura,
+    description: descripcionSitio,
+    url: "/",
+    siteName: site.nombreJefatura,
+    locale: "es_AR",
+    type: "website",
+  },
+};
+
 const NOVEDADES_EN_PORTADA = 3;
 // Ancho real de las tarjetas secundarias (mitad del contenedor menos el espacio entre columnas).
 const SIZES_TARJETA_PORTADA = "(min-width: 1024px) 532px, (min-width: 768px) 50vw, 100vw";
@@ -43,6 +60,7 @@ export default function Home() {
 
   return (
     <>
+      <JsonLd data={jsonLdOrganizacion()} />
       {/* Portada */}
       <section className="border-b border-border bg-brand-teal-tint">
         <Container className="grid gap-10 py-14 lg:grid-cols-[1fr_auto] lg:items-center lg:py-20">

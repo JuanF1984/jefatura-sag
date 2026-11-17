@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { metadataPagina } from "@/lib/seo";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -19,11 +20,12 @@ import {
 } from "@/data/formularios-oficiales";
 import { autorizacionActividadesAcuaticas } from "@/data/formularios-inspectores";
 
-export const metadata: Metadata = {
-  title: "Formularios",
-  description:
-    "Formularios, planillas y trámites para docentes y equipos de conducción: declaraciones juradas, Ingreso a la Docencia, puntaje, carrera docente, licencias y otros accesos oficiales, con prioridad en las fuentes oficiales vigentes de ABC/DGCyE.",
-};
+export const metadata: Metadata = metadataPagina({
+  titulo: "Formularios",
+  descripcion:
+    "Formularios y trámites docentes de la DGCyE: declaraciones juradas, Ingreso a la Docencia, puntaje, carrera docente, licencias y otros accesos oficiales.",
+  ruta: "/formularios",
+});
 
 export default function FormulariosPage() {
   return (

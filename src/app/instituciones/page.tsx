@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { jsonLdInstituciones, metadataPagina } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
 import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
@@ -7,14 +9,17 @@ import { InstitutionsExplorer } from "@/components/ui/InstitutionsExplorer";
 import { mapasInstituciones, instituciones } from "@/data/instituciones";
 import { cicloOferta, cuesConOferta } from "@/lib/oferta-educativa";
 
-export const metadata: Metadata = {
-  title: "Instituciones educativas",
-  description: "Listado de instituciones educativas del distrito de San Andrés de Giles.",
-};
+export const metadata: Metadata = metadataPagina({
+  titulo: "Instituciones educativas",
+  descripcion:
+    "Listado y mapa de las escuelas e instituciones educativas de San Andrés de Giles: nivel, modalidad, dirección, teléfono y correo de cada establecimiento.",
+  ruta: "/instituciones",
+});
 
 export default function InstitucionesPage() {
   return (
     <>
+      <JsonLd data={jsonLdInstituciones(instituciones)} />
       <PageHeader
         title="Instituciones educativas"
         crumb="Instituciones educativas"

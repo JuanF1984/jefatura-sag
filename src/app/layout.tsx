@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Encode_Sans } from "next/font/google";
 import { site, siteUrl } from "@/data/site";
+import { descripcionSitio } from "@/lib/seo";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import "./globals.css";
@@ -10,9 +11,13 @@ const encodeSans = Encode_Sans({
   subsets: ["latin"],
 });
 
-const description =
-  "Sitio institucional de la Jefatura Distrital de San Andrés de Giles (Dirección General de Cultura y Educación, Provincia de Buenos Aires). Instituciones educativas, inspectores, calendario, formularios, normativa y documentos del distrito.";
+const description = descripcionSitio;
 
+/*
+ * Valores por defecto. Cada página define los suyos (título, descripción, canonical,
+ * Open Graph) con `metadataPagina` de src/lib/seo.ts. El canonical NO va acá: se
+ * heredaría a páginas sin canonical propio (404, guía visual) apuntando a la portada.
+ */
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
@@ -20,11 +25,18 @@ export const metadata: Metadata = {
     template: `%s · ${site.nombreJefatura}`,
   },
   description,
+  applicationName: site.nombreJefatura,
   openGraph: {
     title: site.nombreJefatura,
     description,
+    siteName: site.nombreJefatura,
     locale: "es_AR",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: site.nombreJefatura,
+    description,
   },
   robots: {
     index: true,

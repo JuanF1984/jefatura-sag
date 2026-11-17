@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { metadataPagina } from "@/lib/seo";
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
@@ -14,11 +15,12 @@ import { recursosEducativos } from "@/data/recursos-educativos";
 import { calendario2025, comunicados2025, flyers2025 } from "@/data/archivo-2025";
 import { novedadesOrdenadas } from "@/lib/novedades";
 
-export const metadata: Metadata = {
-  title: "Calendario y novedades",
-  description:
-    "Calendario Escolar 2026, trámites e inscripciones docentes y recursos oficiales de la DGCyE.",
-};
+export const metadata: Metadata = metadataPagina({
+  titulo: "Calendario y novedades",
+  descripcion:
+    "Calendario Escolar 2026 de la Provincia de Buenos Aires, trámites e inscripciones docentes y recursos oficiales de la DGCyE, reunidos para el distrito de San Andrés de Giles.",
+  ruta: "/calendario-y-novedades",
+});
 
 export default function CalendarioYNovedadesPage() {
   return (
